@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baseball</title>
+    <link rel="shortcut icon" href="#">
+</head>
+
+<body>
+    <div>
+        <p>Find single or total metrics for baseball players in a variety of different metrics below.</p>
+        <p>Click the metric you would like to see from the table right under this.</p>
+        <p>Please only select one metric at a time.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Metrics</th>
+                </tr>
+            </thead>
+            <tbody id="Metric">
+
+            </tbody>
+        </table>
+    </div>
+    <div style="float:right;">
+        <table>
+            <tbody id="QueryTable">
+
+            </tbody>
+        </table>
+        
+    </div>
+    <p>Select Search Criteria below.  If nothing is selected from a list, all possibilities from said list will be included.</p>
+    <p>To deselect an option, click the option again.  Click Enter Query to see the results.</p>
+    <table>
+        <thead>
+            <tr>
+              <th>Team Name</th>  
+            </tr>
+        </thead>
+
+        <tbody id="teamlist">
+           
+        </tbody>
+    </table>
+
+    <table>
+        <thead>
+            <tr>
+              <th>Year</th>  
+            </tr>
+        </thead>
+
+        <tbody id="seasonlist">
+           
+        </tbody>
+    </table>
+
+    <table>
+        <thead>
+            <tr>
+              <th>League</th>  
+            </tr>
+        </thead>
+
+        <tbody id="leaguelist">
+           
+        </tbody>
+
+    </table>
+
+    
+
+    <button type="button" onclick="queryassembly()">Enter Query</button>
+    <button type="button" onclick="queryparamclear()">Clear Query Parameters</button>
+
+    <br>
+    <br>
+    <div>
+        <strong>Can we predict the ranking of a team based on its winrate?</strong>
+        <p>Here I used linear regression to see if  a team's ranking in the entire league could be determined by win percentage.  My model had an accuracy of 93.31% with a mean squared error of 5.2477. </p>
+        <p> This data only looked at a period of 2001 to 2019.  While data from previous years may help give a better prediction, consideration of different baseball eras may lead to wildy differing results.  2020 was left out for being an outlier.</p>
+        <p>Below, you can see the graphs of rank compared to win percentage along with a graph that incorporates the prediction line.</p>
+        <img src="../static/Graphs/AllWinPercentage.png" alt="AllWinPercent">
+        <img src="../static/Graphs/AllWinPercentageLine.png" alt="AllWinPercentWithLine">
+        <br>
+        <br>
+        <strong>Is there a noticable difference between the AL and NL with regards to winrate?</strong>
+        <p>Next, I tried to see if there has been a difference between AL and NL with regards to win percentage.  Using the same methods as above, I made graphs and linear regression models for this data.</p>
+        <img src="../static/Graphs/ALWinPercentage.png" alt="ALlWinPercent">
+        <img src="../static/Graphs/NLWinPercentage.png" alt="NLWinPercent">
+        <p>The accuracy of these models were higher than the accuracy for both leagues combined.</p>
+        <p>AL had an accuracy of 95.11 while NL had an accuracy of 96.17.  The mean square errors for both were 3.86 and 2.58, respectively.</p>
+        <p>The American league tended to have the most teams both over and under the expected average winrate.  While this is mostly expected to be the case, as most games are played within division so very good teams or very bad teams will affect their own divisions more, several outliers were particularly interesting.</p>
+        <p> In the near future, I will explore the Seattle Mariners' dominance in 2001 with my player database.  The goal is to see if batting metrics exist that will help show how this team tied the record for most wins in a season or if this achievement was a result of non-batting excellence. </p>
+        <br>
+        <br>
+        <strong>After this, I made a table to see the expected win percentage for a team, given their rank, with the knowledge gained from above.</strong>
+        <table>
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>All%</th>
+                    <th>AL%</th>
+                    <th>NL%</th>
+                </tr>
+            </thead>
+            <tbody id="WinPercents">
+
+            </tbody>
+        </table>
+    
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="static/js/app.js"></script>
+
+
+    <style>
+        table, th, td {
+  border: 1px solid black;
+  background-color: white;
+}
+    </style>   
+    
+
+   
+</body>
+</html>
